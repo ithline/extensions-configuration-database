@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>ithline</Authors>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ithline/extensions-configuration-database.git</RepositoryUrl>

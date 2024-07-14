@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace Ithline.Extensions.Configuration.Npgsql;
 
-internal sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
+public sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
 {
     private readonly ChangeTokenSource _tokenSource = new();
     private readonly NpgsqlCommandTexts _commandTexts;
