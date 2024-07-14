@@ -1,0 +1,25 @@
+﻿<Project>
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Authors>ithline</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ithline/extensions-configuration-database.git</RepositoryUrl>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ithline/extensions-configuration-database</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Nullable>enable</Nullable>
+
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <Deterministic>true</Deterministic>
+    <IncludeSymbols>true</IncludeSymbols>
+
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+</Project>
