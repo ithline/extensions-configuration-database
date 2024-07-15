@@ -2,19 +2,22 @@
 
   <PropertyGroup>
     <PackageId>Ithline.Extensions.Configuration.Npgsql</PackageId>
-    <PackageTags>configuration database npgsql</PackageTags>
+    <PackageTags>configuration;npgsql</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <Description>Implementation of Npgsql-based IConfigurationProvider.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <IsTrimmable>true</IsTrimmable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ithline.Extensions.Configuration.Database\Ithline.Extensions.Configuration.Database.csproj" />
+    <ProjectReference Include="..\Ithline.Extensions.Configuration.Database\Ithline.Extensions.Configuration.Database.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="Npgsql" Version="8.0.3"/>
   </ItemGroup>
 
   <ItemGroup>

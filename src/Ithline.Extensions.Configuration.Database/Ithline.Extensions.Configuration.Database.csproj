@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <PackageId>Ithline.Extensions.Configuration.Database</PackageId>
-    <PackageTags>configuration database</PackageTags>
+    <PackageTags>configuration</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <Description>Base classes for database-based IConfigurationProvider.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <IsTrimmable>true</IsTrimmable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

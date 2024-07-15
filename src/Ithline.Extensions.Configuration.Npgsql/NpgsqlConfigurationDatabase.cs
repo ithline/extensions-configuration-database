@@ -5,6 +5,9 @@ using Npgsql;
 
 namespace Ithline.Extensions.Configuration.Npgsql;
 
+/// <summary>
+/// Implementation of <see cref="IConfigurationDatabase"/> using PostgreSQL as a backing source.
+/// </summary>
 public sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
 {
     private readonly ChangeTokenSource _tokenSource = new();
@@ -13,12 +16,24 @@ public sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
 
     private bool _initialized;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NpgsqlConfigurationDatabase"/>.
+    /// </summary>
+    /// <param name="dataSource">Data source used to create database connections.</param>
+    /// <param name="tableName">Name of the settings table.</param>
+    /// <param name="schemaName">Name of the schema.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="dataSource"/> is <see langword="null" />.</exception>
+    /// <exception cref="ArgumentException"><paramref name="tableName"/> is <see langword="null" />, empty string or contains only white-space characters.</exception>
     public NpgsqlConfigurationDatabase(NpgsqlDataSource dataSource, string tableName, string? schemaName = null)
     {
-        _dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+        ArgumentNullException.ThrowIfNull(dataSource);
+        ArgumentException.ThrowIfNullOrWhiteSpace(tableName);
+
+        _dataSource = dataSource;
         _commandTexts = new NpgsqlCommandTexts(tableName, schemaName);
     }
 
+    /// <inheritdoc />
     public string[] GetKeys()
     {
         this.Initialize();
@@ -35,6 +50,7 @@ public sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
         return builder.ToArray();
     }
 
+    /// <inheritdoc />
     public KeyValuePair<string, string?>[] GetValues()
     {
         this.Initialize();
@@ -54,19 +70,16 @@ public sealed class NpgsqlConfigurationDatabase : IConfigurationDatabase
         return builder.ToArray();
     }
 
+    /// <inheritdoc />
     public IConfigurationDatabaseBatch CreateBatch()
     {
         return new BatchBuilder(_dataSource, _commandTexts, _tokenSource, this.Initialize);
     }
 
-    public IDisposable OnChange(Action handler)
+    /// <inheritdoc />
+    public IChangeToken GetReloadToken()
     {
-        return ChangeToken.OnChange(() => _tokenSource.Token, handler);
-    }
-
-    public IDisposable OnChange<TState>(Action<TState> handler, TState state)
-    {
-        return ChangeToken.OnChange(() => _tokenSource.Token, handler, state);
+        return _tokenSource.Token;
     }
 
     private void Initialize()

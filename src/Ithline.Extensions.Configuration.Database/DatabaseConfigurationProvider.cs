@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 
 namespace Ithline.Extensions.Configuration.Database;
 
@@ -13,7 +14,7 @@ internal sealed class DatabaseConfigurationProvider : ConfigurationProvider, IDi
         _database = database;
         _reloadDelay = reloadDelay;
 
-        _tokenRegistration = database.OnChange(obj =>
+        _tokenRegistration = ChangeToken.OnChange(database.GetReloadToken, obj =>
         {
             Thread.Sleep(obj._reloadDelay);
             obj.Load();
